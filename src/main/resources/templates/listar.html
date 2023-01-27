@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<h4 class="card-title">
+					<a th:href="@{/form}" class="btn btn-primary">Crear Show</a>
+				</h4>
+
+				<table class="table table-striped">
+					<thead>
+					<tr>
+					<th scope="col">ID</th>
+					<th scope="col">SHOW</th>
+					<th scope="col">NETWORK</th>
+					<th scope="col">CALIFICACION</th>
+				</tr>
+					</thead>
+					<tbody>
+					<tr th:each="show:${shows}">
+					<td><a class="btn btn-primary btn-xs" th:href="@{/ver/} + ${show.id}" th:text="${show.id}"></a></td>
+				    <th th:text="${show.id}"/> 
+					<td th:text="${show.showTitle}" />
+					<td th:text="${show.showNetwork}" />
+					<td th:text="${show.ratings}" />
+							<td><a class="btn btn-primary btn-sm"
+								th:href="@{/editShow/} + ${show.id}" th:text="'agregar rating'"></a></td>
+							<td><a class="btn btn-danger btn-sm"
+								th:href="@{/eliminar/} + ${show.id}" th:text="'eliminar'"></a></td>
+						</tr>
+					</tbody>
+
+				</table>
+				<nav th:replace="paginator-nav :: paginator"></nav>
+			</div>
+		</div>
+		
+	</div>
+	
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
