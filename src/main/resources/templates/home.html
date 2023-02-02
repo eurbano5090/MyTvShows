@@ -116,25 +116,26 @@
 </div>
 </div>
 </section>
- <div class="container-fluid col-12">
-  <table class="table table-success">
-  <thead class="thead-dark">
-  <tr>
-  <th scope="col">ID</th>
-  <th scope="col">SHOW</th>
-  <th scope="col">NETWORK</th>
-  <th scope="col">RATING</th>
-  </tr>
-  </thead>
-  <tbody>
+ <div class="destacados container-fluid">
+     <h1 class="text-center pt-5 text-uppercase text-light">Destacados</h1>
+     <hr class="hero-line text-white opacity-200 mx-auto w-25">
+        
+        <div class="card-2 col-sm-12 col-12 my-3">
+        <div class="card-shadow text-light" th:width="18rem" th:each="show:${shows}">
+       
+         <img th:if="${#strings.length(show.foto) > 0}"
+	     class="img-thumbnail" style="max-width:100%;"
+	     th:src="@{'/uploads/' + ${show.foto}}" th:alt="${show.foto}">
+          <div class="card-body">
+            <h6 th:text="${show.showTitle}"></h6>
+            <p th:text="${show.duracion}"></p>
+            <p th:text="${show.showNetwork}"></p>   
+          </div>
+        </div>
+      </div>
   
-  <tr th:each="show:${shows}">
-  <th th:text="${show.id}"/>
-  <td th:text="${show.showTitle}"/>
-  <td th:text="${show.showNetwork}"/>
-   <td th:text="${show.ratings}"/>
-   
-  </tbody>
+ </div>
+
  </table>
  	<nav th:replace="paginator-nav :: paginator"></nav>
       </div>       
